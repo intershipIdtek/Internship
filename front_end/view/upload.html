@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/front_end/js/jquery-3.2.1.min.js"></script>
+    <title>Trang Quản Lí Kho Sách Nhà Sách Nguyễn Văn Cừ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Sách tiếng Việt  - Nguyễn Văn Cừ hệ thống nhà sách chuyên nghiệp. Đáp ứng tất cả các yêu cầu về sách">
+    <meta name="author" content="">
+    <!--       -->
+    <!-- Bootstrap core CSS -->
+     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    /* Temporary fix for img-fluid sizing within the carousel */
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: block;
+    }
+    
+    </style>
+</head>
+
+<body>
+    <form id="uploadForm" enctype="multipart/form-data" action="#" method="post">
+        <div class="azureD" style="display:none;">
+        <div class="pull-left">
+      <label class="labelTemp">Subscription ID</label>
+        <div class="clickRole addStoTabWid">
+            <input type="text" id="" placeholder="" style="border:none;width:100%;">  
+        </div>
+        </div>
+        <div class="pull-left">
+        <label class="labelTemp">Upload .pem file</label>
+            <div class="clickRole addStoTabWid">
+                <input type="file" name="userPhoto" id="" placeholder=""  style="border:none;width:100%;">
+            </div>
+        </div>
+        <div class="modal-footer">
+         </br><!--<a class="cancelPoup">Cancel</a>&nbsp;
+         <button class="redButton">Create</button>-->
+         <input type="submit" value="Upload Image" name="submit">
+        </div>
+    </form>
+
+</body>
+
+</html>

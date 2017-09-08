@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>NHA SACH NGUYEN VAN CU</title>
+    <meta charset="UTF-8">
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+            td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            }
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+</script>
+</head>
+
+<body>
+    <!-- <form action="/process_get" method="GET"> -->
+        Họ tên: <input type="text" id="name"> <br>
+        Số cuốn sách muốn thuê: <input type="number" id="num_of_book"> <br>
+        (Tối đa 10 cuốn) <br>
+        Số ngày thuê: <input type="number" id="num_of_day"> <br>
+        <input id="btn_send_request" type="submit" value="Submit">
+    <!-- </form> -->
+    <table>
+      <thead>
+        <table style="width:100%">
+            <tr>
+                <th>TÊN SÁCH</th>
+                <th>TÁC GIẢ</th>
+                <th>TIỀN THUÊ 1 NGÀY</th>
+            </tr>      
+      </thead>
+      <tbody id="thong_tin_sach">
+      </tbody>
+    </table>
+        <script>
+        $('#btn_send_request').on('click',function(e){
+            $.ajax({
+                url: "/process_get",
+                method: "GET",
+                data:{
+                    name:$('#name').val(),
+                    num_of_book:$('#num_of_book').val(),
+                    //price_per_day: $('#price_per_day').val(),
+                    num_of_day:$('#num_of_day').val()
+                },
+                success: function(res){
+                    console.log("Thanh cong, Ket qua tra ve : ");
+                    console.log(res);
+
+                    // Chuyen chuỗi json thành biến json (parse JSON)
+                    json = JSON.parse(res);
+                    console.log("json:")
+                    console.log(json);
+                    // Truy cap mang ten sach
+                    var ten_khach_hang = document.getElementById('name'.value);
+                    table_thong_tin = $('#thong_tin_sach'); // tbody phan thong tin book
+                    books = json['Ten_sach_da_chon'];
+                    table_thong_tin.append(ten_khach_hang);
+                    books.forEach(function(book) {
+                        console.log(book);
+                        table_thong_tin.append('<tr><td>'+book['ten_sach']+'</td><td>'+book['ten_tac_gia']+'</td><td>'+book['price_per_day']+'</td></tr>');
+                    });
+                    total_money=json['Tong_tien'];
+                    console.log('Tong tien');
+                    console.log(total_money);
+                    
+                    //table_thong_tin.append('<tr><td>Tên khách hàng</td><td>' + name + '</td></tr>');
+                    table_thong_tin.append('<tr><td>Tổng tiền</td><td>'+total_money+'</td></tr>');
+                    
+                }
+            });
+        });
+    </script>
+</body>
+</html>

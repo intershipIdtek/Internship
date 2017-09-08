@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/front_end/js/jquery-3.2.1.min.js"></script>
+    <title>Trang Quản Lí Kho Sách Nhà Sách Nguyễn Văn Cừ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Tủ Sách Hay  - Nguyễn Văn Cừ hệ thống nhà sách chuyên nghiệp. Đáp ứng tất cả các yêu cầu về sách">
+    <meta name="author" content="">
+
+    <style type="text/css">
+        p {
+            color: blue;    
+        }
+    </style>
+    <!--       -->
+    <!-- Bootstrap core CSS -->
+     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    /* Temporary fix for img-fluid sizing within the carousel */
+    
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: block;
+    }
+    
+</style>
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+            h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+</head>
+    
+<body background = "./picture/pic108.jpg" onload="startTime()">
+    <div id="txt"></div>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href="">Nhà Sách Nguyễn Văn Cừ</a>
+            <div class="collapse navbar-collapse" id="navbarExample">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">ABOUT <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8081/front_end/view/index.htm" target="_blank">CUSTOMER</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8081/front_end/view/register.html">SIGN-UP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8081/front_end/view/createBook.htm" target="_blank">ADMIN</a>
+                    </li>
+                </ul>
+            </div>
+            <div> 
+                <table cellpadding="0px" cellspacing="0px"> 
+                    <tr> 
+                        <td style="border-style:solid none solid solid;border-color:blue;border-width:3px;">
+                        <input type="text" name="book_name_search"  id="book_name_search" style="width:200px; border:0px solid; height:30px; padding:0px 3px; position:relative;"> 
+                        </td>
+                        <td style="border-style:solid;border-color:blue;border-width:3px;"> 
+                            <a style = "color:red" href="#" onclick="ajax_searchBook()" id="search" class="page-scroll btn btn-xl" placeholder="nhập tên sách cần tìm">-- SEARCH_BOOK --</a>  
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </nav>
+    
+     <h1 class="my-4">Trang quản lí sách của Admin <strong>nhà sách Nguyễn Văn Cừ</strong></h1>
+     <p>
+
+     </p>
+     
+
+    <div>
+        <span style="font-size: 20px">--Bảng nhập kho sách mới--</span><br>
+        Tên sách: <input type="text" name="book_name" id="book_name"> <br>
+        Tác giả: <input type="text" name="artist" id="artist"> <br>
+        Giá/Ngày: <input type="number" name="price_per_day" id="price_per_day"> <br>
+        Tệp ảnh: <input type="file" name="datafile" size="40">
+                 <button onclick="ajax_upload()">-Send-</button><br>
+         <button onclick="ajax_createBook()">-- ADD_BOOK --</button>
+        <p>
+
+        </p>
+        <span style="font-size: 20px">--Nhập tên sách cần xóa--</span><br>
+        Xóa Book: <input type="text" name="book_name_remove" id="book_name_remove"> <br>
+       
+        <button onclick="ajax_removeBook()" id="id">-- REMOVE_BOOK --</button>
+    </div>
+    
+    <div>
+        <table id="book_results" style="width:100%" border="1">
+            <tr>
+                <th>Book</th>
+                <th>Artist</th> 
+                <th>Price</th>
+            </tr>
+        </table>
+    </div>
+<script type='text/javascript'>
+    var ajax_createBook = function () {
+        var request = $.ajax({
+          url: "http://localhost:8081/createBook",
+          type: "GET",
+          data: {book_name: $('#book_name').val(), artist: $('#artist').val(), price_per_day: $('#price_per_day').val()},
+          dataType: "json"
+        });
+        request.done(function(res) {
+            console.log(res);
+            $("#book_results tr").remove();
+            $('#book_results > tbody:last-child').append(
+                `<tr>
+                    <th>Book</th>
+                    <th>Artist</th> 
+                    <th>Price</th>
+                </tr>`);
+            all_book_array1 = res;
+            all_book_array1.forEach(function(element) {
+                $('#book_results > tbody:last-child').append(
+                `<tr>
+                    <td align="left">${element.book_name}</td>
+                    <td align="left">${element.artist}</td> 
+                    <td align="right">${element.price_per_day}</td>
+                </tr>`);
+            });
+        });
+        request.fail(function(jqXHR, textStatus) {
+          alert( "Request failed: " + textStatus );
+      });
+    }
+</script>
+
+<script type='text/javascript'>
+    var ajax_removeBook = function () {
+        var request = $.ajax({         // tạo biến 
+          url: "http://localhost:8081/removeBook",
+            type: "GET",
+            data: {book_name_remove: $('#book_name_remove').val()},
+          dataType: "json"
+        });
+        request.done(function(res) {
+            console.log(res);
+            $("#book_results tr").remove();
+            $('#book_results > tbody:last-child').append(
+                `<tr>
+                    <th>Book</th>
+                    <th>Artist</th> 
+                    <th>Price</th>
+                </tr>`);
+            all_book_array2 = res;
+                all_book_array2.forEach(function(element) {
+                    $('#book_results > tbody:last-child').append(
+                        `<tr>
+                            <td align="left">${element.book_name}</td>
+                            <td align="left">${element.artist}</td> 
+                            <td align="right">${element.price_per_day}</td>
+                        </tr>`);
+                });
+        });
+        request.fail(function(jqXHR, textStatus) {
+          alert( "Request failed: " + textStatus );
+      });
+    }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+{
+    "book_store" : "nhà sách Nguyễn Văn Cừ",
+    "all_books" : [
+        {
+            "book_name" : "tiểu thuyết lập trình",
+            "artist" : "Trí Phèo",
+            "price_per_day" : "10000"
+        },
+        {
+            "book_name" : "phần mềm tình yêu",
+            "artist" : "Thị Co",
+            "price_per_day" : "15000"
+        },
+        {
+            "book_name" : "conan",
+            "artist" : "mori",
+            "price_per_day" : "20000"            
+        },
+        {
+            "book_name" : "lịch sử code",
+            "artist" : "Cường Cường",
+            "price_per_day" : "5000"
+        },
+        {
+            "book_name" : "sách tập gym",
+            "artist" : "Tâm Nguyễn",
+            "price_per_day" : "12000"
+        },
+        {
+            "book_name" : "Soccer Magazine",
+            "artist" : "Minh Ngô",
+            "price_per_day" : "50000"
+        },
+        {
+            "book_name" : "tui thấy hoa xanh trên cỏ vàng",
+            "artist" : "Minh Quốc",
+            "price_per_day" : "3000"
+        },
+        {
+            "book_name" : "sách tập yoga",
+            "artist" : "Ngọc Trinh",
+            "price_per_day" : "4000"
+        },
+        {
+            "book_name" : "Ai là triệu phú",
+            "artist" : "Donald Trump",
+            "price_per_day" : "1000"
+        },
+        {
+            "book_name" : "Love Story",
+            "artist" : "Tùng Sơn",
+            "price_per_day" : "30000"
+        }
+    ]
+}

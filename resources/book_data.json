@@ -1,0 +1,56 @@
+{
+    "book_store" : "nhà sách Nguyễn Văn Cừ",
+    "all_books" : [
+        {
+            "book_name" : "tiểu thuyết lập trình",
+            "artist" : "Trí Phèo",
+            "price_per_day" : "10000"
+        },
+        {
+            "book_name" : "phần mềm tình yêu",
+            "artist" : "Thị Co",
+            "price_per_day" : "15000"
+        },
+
+        {
+            "book_name" : "Ngày mai có gấu",
+            "artist" : "FA",
+            "price_per_day" : "5000"
+        },
+        {
+            "book_name" : "Bí quyết cua ",
+            "artist" : "So khanh",
+            "price_per_day" : "5000"
+        },
+        {
+            "book_name" : "Hoàng tử bé",
+            "artist" : "Saint Exupéri",
+            "price_per_day" : "10000"
+        },
+        {
+            "book_name" : "Huckleberry Finn",
+            "artist" : "Mark Taiwn",
+            "price_per_day" : "25000"
+        },
+        {
+            "book_name" : "Những người khốn khổ",
+            "artist" : "Victor Hugo",
+            "price_per_day" : "30000"
+        },
+        {
+            "book_name" : "Đắc Nhân Tâm",
+            "artist" : "Dale Carnegie",
+            "price_per_day" : "15000"
+        },
+        {
+            "book_name" : "Quảng gánh lo đi và vui sống",
+            "artist" : "Dale Carnegie",
+            "price_per_day" : "15000"
+        },
+        {
+            "book_name" : "Cuộc chiến với hành tinh Fantom",
+            "artist" : "Nguyễn Bính",
+            "price_per_day" : "5000"
+        }
+    ]
+}
